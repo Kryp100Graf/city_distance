@@ -1,0 +1,79 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/db.changelog-master.yaml
+  - changeSet:
+      id: 1
+      author: kihaev
+      changes:
+        - createTable:
+            tableName: city
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: latitude
+                  type: double(9, 6)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: longitude
+                  type: double(9, 6)
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: distance
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: from_city
+                  type: varchar(40)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: to_city
+                  type: varchar(40)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: distance
+                  type: int
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: kihaev
+      comment: "Create city Samara"
+      changes:
+        - insert:
+            tableName: city
+            columns:
+              - column:
+                  name: name
+                  value: "Samara"
+              - column:
+                  name: latitude
+                  value: 53.183330
+              - column:
+                  name: longitude
+                  value: 50.116670
+      rollback:
+        - delete:
+            tableName: city
+            where: name in ('Samara')
