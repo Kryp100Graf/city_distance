@@ -12,13 +12,44 @@ public class Distance implements Serializable {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "from_city")
+    @Column(name = "from")
     private String fromCity;
 
-    @Column(name = "to_city")
+    @Column(name = "to")
     private String toCity;
 
     @Column(name = "distance")
     private int distance;
 
+    public String getToCity() {
+        return toCity;
+    }
+
+    public void setToCity(String toCity) {
+        this.toCity = toCity;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
+
+    public String getFromCity() {
+        return fromCity;
+    }
+
+    public void setFromCity(String fromCity) {
+        this.fromCity = fromCity;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }
