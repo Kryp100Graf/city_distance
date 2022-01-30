@@ -41,14 +41,14 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: from
-                  type: varchar(40)
+                  name: from_city
+                  type: BIGINT
                   constraints:
                     unique: true
                     nullable: false
               - column:
-                  name: to
-                  type: varchar(40)
+                  name: to_city
+                  type: BIGINT
                   constraints:
                     nullable: false
               - column:
@@ -56,57 +56,57 @@ databaseChangeLog:
                   type: int
                   constraints:
                     nullable: false
-  - changeSet:
-      id: 2
-      author: kihaev
-      comment: "Create city Samara"
-      changes:
-        - insert:
-            tableName: city
-            columns:
-              - column:
-                  name: name
-                  value: "Samara"
-              - column:
-                  name: latitude
-                  value: 53.183330
-              - column:
-                  name: longitude
-                  value: 50.116670
-        - insert:
-            tableName: city
-            columns:
-              - column:
-                  name: name
-                  value: "Moscow"
-              - column:
-                  name: latitude
-                  value: 55.754230
-              - column:
-                  name: longitude
-                  value: 37.620316
-      rollback:
-        - delete:
-            tableName: city
-            where: name in ('Samara', 'Moscow')
-  - changeSet:
-      id: 3
-      author: kihaev
-      comment: "Create distance from Samara to Moscow"
-      changes:
-        - insert:
-            tableName: distance
-            columns:
-              - column:
-                  name: from
-                  value: "Samara"
-              - column:
-                  name: to
-                  value: "Moscow"
-              - column:
-                  name: distance
-                  value: 1063
-      rollback:
-        - delete:
-            tableName: distance
-            where: from in ('Samara', 'Moscow')
+#  - changeSet:
+#      id: 2
+#      author: kihaev
+#      comment: "Create city Samara"
+#      changes:
+#        - insert:
+#            tableName: city
+#            columns:
+#              - column:
+#                  name: name
+#                  value: "Samara"
+#              - column:
+#                  name: latitude
+#                  value: 53.183330
+#              - column:
+#                  name: longitude
+#                  value: 50.116670
+#        - insert:
+#            tableName: city
+#            columns:
+#              - column:
+#                  name: name
+#                  value: "Moscow"
+#              - column:
+#                  name: latitude
+#                  value: 55.754230
+#              - column:
+#                  name: longitude
+#                  value: 37.620316
+#      rollback:
+#        - delete:
+#            tableName: city
+#            where: name in ('Samara', 'Moscow')
+#  - changeSet:
+#      id: 3
+#      author: kihaev
+#      comment: "Create distance from Samara to Moscow"
+#      changes:
+#        - insert:
+#            tableName: distance
+#            columns:
+#              - column:
+#                  name: from
+#                  value: "Samara"
+#              - column:
+#                  name: to
+#                  value: "Moscow"
+#              - column:
+#                  name: distance
+#                  value: 1063
+#      rollback:
+#        - delete:
+#            tableName: distance
+#            where: from in ('Samara', 'Moscow')

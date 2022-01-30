@@ -1,14 +1,17 @@
 package ru.kihaev.citydistance.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "city")
+@JacksonXmlRootElement(localName = "city")
 public class City implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
 

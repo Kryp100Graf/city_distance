@@ -1,31 +1,51 @@
 package ru.kihaev.citydistance.entity;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "distance")
+@JacksonXmlRootElement(localName = "distance")
 public class Distance implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
 
-    @Column(name = "from")
-    private String fromCity;
+    @ManyToOne
+    @JoinColumn(name = "from_city")
+    private City fromCity;
 
-    @Column(name = "to")
-    private String toCity;
+    @ManyToOne
+    @JoinColumn(name = "to_city")
+    private City toCity;
 
     @Column(name = "distance")
     private int distance;
 
-    public String getToCity() {
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public City getFromCity() {
+        return fromCity;
+    }
+
+    public void setFromCity(City fromCity) {
+        this.fromCity = fromCity;
+    }
+
+    public City getToCity() {
         return toCity;
     }
 
-    public void setToCity(String toCity) {
+    public void setToCity(City toCity) {
         this.toCity = toCity;
     }
 
@@ -35,21 +55,5 @@ public class Distance implements Serializable {
 
     public void setDistance(int distance) {
         this.distance = distance;
-    }
-
-    public String getFromCity() {
-        return fromCity;
-    }
-
-    public void setFromCity(String fromCity) {
-        this.fromCity = fromCity;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 }
